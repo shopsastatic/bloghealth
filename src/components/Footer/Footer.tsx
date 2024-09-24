@@ -8,7 +8,7 @@ import { NcFooterMenuFieldsFragmentFragment } from '@/__generated__/graphql'
 import Link from 'next/link'
 
 interface Props {
-	menuItems: FragmentType<typeof NC_FOOTER_MENU_QUERY_FRAGMENT>[] | null
+	menuItems: any
 }
 
 export type FooterNavItemType = NcFooterMenuFieldsFragmentFragment & {
