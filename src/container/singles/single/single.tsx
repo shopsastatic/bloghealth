@@ -9,11 +9,10 @@ import Link from "next/link";
 import { formatDate } from "@/components/FormatDate";
 
 export interface SingleType1Props {
-  post: FragmentType<typeof NC_POST_FULL_FRAGMENT>;
-  showRightSidebar?: boolean;
+  post: any
 }
 
-const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {
+const SingleType1: FC<SingleType1Props> = ({ post }) => {
   //
   const {
     title,

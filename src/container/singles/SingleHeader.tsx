@@ -43,7 +43,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
   }
 
   const products = post?.postData?.products
-  const [headings, setHeadings] = useState([]);
+  const [headings, setHeadings] = useState<string[]>([]);
 
   const addIdsToH2Tags = (htmlContent: any) => {
     return htmlContent.replace(/<h2(.*?)>(.*?)<\/h2>/g, (match: any, p1: any, p2: any) => {
@@ -59,8 +59,10 @@ const SingleHeader: FC<SingleHeaderProps> = ({
     tempDiv.innerHTML = content;
 
     const h2Elements = tempDiv.querySelectorAll('h2');
-    const headingsArray = Array.from(h2Elements).map((h2) => h2.textContent);
-    setHeadings(headingsArray?.length > 0 ? headingsArray);
+    const headingsArray = Array.from(h2Elements)
+    .map((h2) => h2.textContent)
+    .filter((text): text is string => text !== null);
+    setHeadings(headingsArray);
   }, [content]);
 
   function strToSlug(str: any) {
