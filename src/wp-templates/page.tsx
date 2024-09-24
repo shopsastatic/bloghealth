@@ -11,7 +11,7 @@ import MyWordPressBlockViewer from "@/components/MyWordPressBlockViewer";
 import Link from "next/link";
 import ButtonPrimary from "@/components/Button/ButtonPrimary";
 
-const Page: FaustTemplate<GetPageQuery> = (props) => {
+const Page: FaustTemplate<GetPageQuery> = (props: any) => {
   // LOADING ----------
   if (props.loading) {
     return <>Loading...</>;

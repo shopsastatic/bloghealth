@@ -14,7 +14,7 @@ const Page: FaustPage<GetAuthorWithPostsQuery> = (props: any) => {
     return <Page404Content />;
   }
 
-  const homeData = (props)?.data?.page?.pageCategory
+  const homeData = (props: any)?.data?.page?.pageCategory
 
   let author = props?.data?.user
 
