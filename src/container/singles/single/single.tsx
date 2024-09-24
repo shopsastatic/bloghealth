@@ -27,9 +27,8 @@ const SingleType1: FC<SingleType1Props> = ({ post }) => {
     ncPostMetaData,
   } = getPostDataFromPostFragment(post || {});
 
-  categories as any
 
-  let lasttestPost = categories?.nodes?.[0]?.posts?.nodes?.slice(-5)
+  let lasttestPost = (categories as any)?.nodes?.[0]?.posts?.nodes?.slice(-5)
   let layoutStyle = post?.postData?.layoutStyle?.[0] ?? "Default"
 
   if(layoutStyle == "Comparison") {
