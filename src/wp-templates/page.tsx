@@ -8,7 +8,6 @@ import { FaustTemplate, flatListToHierarchical } from "@faustwp/core";
 import { FOOTER_LOCATION, PRIMARY_LOCATION } from "@/contains/menu";
 import PageLayout from "@/container/PageLayout";
 import MyWordPressBlockViewer from "@/components/MyWordPressBlockViewer";
-import Home from "@/pages/Home";
 import Link from "next/link";
 import ButtonPrimary from "@/components/Button/ButtonPrimary";
 
@@ -30,13 +29,13 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
     parentKey: "parentClientId",
   });
 
-  const homeData = props?.data?.page2?.pageCategory
-  const postBanner = homeData?.postBanner?.nodes
-  const breakingNews = homeData?.breakingNews?.nodes
-  const homeCategory1 = homeData?.homeCategory1?.nodes?.[0]
-  const homeCategory2 = homeData?.homeCategory2?.nodes?.[0]
-  const homeCategory3 = homeData?.homeCategory3?.nodes?.[0]
-  const homeCategory4 = homeData?.homeCategory4?.nodes?.[0]
+  const homeData = props?.data?.page2?.pageCategory as any
+  const postBanner = homeData?.postBanner?.nodes as any
+  const breakingNews = homeData?.breakingNews?.nodes as any
+  const homeCategory1 = homeData?.homeCategory1?.nodes?.[0] as any
+  const homeCategory2 = homeData?.homeCategory2?.nodes?.[0] as any
+  const homeCategory3 = homeData?.homeCategory3?.nodes?.[0] as any
+  const homeCategory4 = homeData?.homeCategory4?.nodes?.[0] as any
 
   if (props.__SEED_NODE__?.isFrontPage) {
     return (
@@ -59,7 +58,7 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
                 <Link href={postBanner?.[0]?.uri}>
                   <h2 className='my-3 text-xl md:text-3xl'>{postBanner?.[0]?.title}</h2>
                 </Link>
-                {postBanner?.[0]?.excerpt && (
+                {(postBanner as any)?.[0]?.excerpt && (
                   <div className='line-clamp-2 mb-2 md:mb-5' dangerouslySetInnerHTML={{ __html: postBanner?.[0]?.excerpt }}></div>
                 )}
 

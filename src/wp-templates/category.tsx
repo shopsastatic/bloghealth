@@ -41,10 +41,10 @@ const Category: FaustTemplate<PageCategoryGetCategoryQuery> = (props) => {
   const _top10Categories =
     (props.data?.categories?.nodes as TCategoryCardFull[]) || [];
 
-  let hasParent = props.data?.category?.parent
-  const categoryChild = props?.data?.category?.children?.nodes
+  let hasParent = (props as any).data?.category?.parent
+  const categoryChild = (props as any)?.data?.category?.children?.nodes
 
-  const parent = props?.data?.category?.parent?.node
+  const parent = (props as any)?.data?.category?.parent?.node
 
   const homeData = props?.data?.page?.pageCategory
 
