@@ -60,7 +60,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
 
     const h2Elements = tempDiv.querySelectorAll('h2');
     const headingsArray = Array.from(h2Elements).map((h2) => h2.textContent);
-    setHeadings(headingsArray);
+    setHeadings(headingsArray?.length > 0 ? headingsArray);
   }, [content]);
 
   function strToSlug(str: any) {
