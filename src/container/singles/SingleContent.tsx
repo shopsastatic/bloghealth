@@ -14,7 +14,8 @@ const SingleContent: any = ({ post }: any) => {
 	const endedAnchorRef = useRef<HTMLDivElement>(null)
 	const contentRef = useRef<HTMLDivElement>(null)
 	const progressRef = useRef<HTMLButtonElement>(null)
-
+	const [isShowScrollToTop, setIsShowScrollToTop] = useState<boolean>(false)
+	//
 
 	//
 	const {
