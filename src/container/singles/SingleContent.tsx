@@ -25,8 +25,8 @@ const SingleContent: any = ({ post }: any) => {
 	} = getPostDataFromPostFragment(post || {})
 
 	//
-	let categoryParent = categories?.nodes?.[0]
-	let categoryChild = categories?.nodes?.[1]
+	let categoryParent = categories?.nodes?.[0] as any
+	let categoryChild = categories?.nodes?.[1] as any
 
 	let relatedPost = [];
 
