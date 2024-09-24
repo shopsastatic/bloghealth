@@ -21,7 +21,7 @@ interface IArchiveLayoutProps {
 	categoryChild: any
 }
 
-const ArchiveLayout: FC<IArchiveLayoutProps> = ({
+const ArchiveLayout: FC<any> = ({
 	children,
 	name,
 	initPosts: posts,
