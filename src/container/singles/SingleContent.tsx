@@ -9,24 +9,12 @@ import Alert from '@/components/Alert'
 import { clsx } from 'clsx'
 import Link from 'next/link'
 
-export interface SingleContentProps {
-	post: GetPostSiglePageQuery['post']
-}
 
-const SingleContent: FC<SingleContentProps> = ({ post }) => {
+const SingleContent: any = ({ post }: any) => {
 	const endedAnchorRef = useRef<HTMLDivElement>(null)
 	const contentRef = useRef<HTMLDivElement>(null)
 	const progressRef = useRef<HTMLButtonElement>(null)
-	//
-	const [isShowScrollToTop, setIsShowScrollToTop] = useState<boolean>(false)
-	//
 
-	const endedAnchorEntry = useIntersectionObserver(endedAnchorRef, {
-		threshold: 0,
-		root: null,
-		rootMargin: '0%',
-		freezeOnceVisible: false,
-	})
 
 	//
 	const {
