@@ -9,12 +9,12 @@ import Page404Content from "@/container/404Content";
 import PageLayout from "@/container/PageLayout";
 import Link from "next/link";
 
-const Page: FaustPage<GetAuthorWithPostsQuery> = (props) => {
+const Page: FaustPage<GetAuthorWithPostsQuery> = (props: any) => {
   if (!props.data?.user) {
     return <Page404Content />;
   }
 
-  const homeData = props?.data?.page?.pageCategory
+  const homeData = (props)?.data?.page?.pageCategory
 
   let author = props?.data?.user
 
