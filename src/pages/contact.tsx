@@ -188,7 +188,7 @@ const PageContact = () => {
 	)
 }
 
-const Page: FaustPage<GetReadingListPageQuery> = props => {
+const Page: FaustPage<GetReadingListPageQuery> = (props: any) => {
 	if (NC_SITE_SETTINGS.contact_page?.enable === false) {
 		return (
 			<>
