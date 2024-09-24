@@ -92,7 +92,7 @@ const SingleType1: FC<SingleType1Props> = ({ post }) => {
               >
                 {item.name}
               </Link>
-              {index < categories?.nodes.length - 1 && <span>{'>'}</span>}
+              {index < (categories?.nodes?.length ?? 0) - 1 && <span>{'>'}</span>}
             </React.Fragment>
           ))}
         </div>
