@@ -219,7 +219,7 @@ const NavigationItem: FC<NavigationItemProps> = ({
 								static
 								className="sub-menu absolute left-0 top-full z-10 w-56 transform"
 							>
-								<ul className="relative grid space-y-1 rounded-2xl bg-white py-3 text-sm shadow-lg ring-1 ring-black ring-opacity-5 dark:bg-neutral-900 dark:ring-white dark:ring-opacity-10">
+								<ul className="relative grid space-y-1 bg-white py-3 text-sm shadow-lg ring-1 ring-black ring-opacity-5 dark:bg-neutral-900 dark:ring-white dark:ring-opacity-10">
 									{menuDropdown.children?.map(i => {
 										if (i.children?.length) {
 											return renderDropdownMenuNavlinkHasChild(i)
@@ -301,7 +301,7 @@ const NavigationItem: FC<NavigationItemProps> = ({
 	const renderDropdownMenuNavlink = (item: NavItemType) => {
 		return (
 			<Link
-				className="flex items-center rounded-md px-4 py-2 font-normal text-neutral-600 hover:bg-neutral-100 hover:text-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
+				className="flex items-center rounded-md px-4 py-2 font-normal text-neutral-600 hover:underline hover:text-blue-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
 				href={{
 					pathname: item.uri || '',
 				}}

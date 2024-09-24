@@ -58,8 +58,6 @@ const ArchiveLayoutChild: FC<IArchiveLayoutChildProps> = ({
 		categoryDatabaseId,
 	})
 
-	console.log(currentPosts)
-
 	return (
 		<div className="page-category-child container mt-5">
 			<div className='text-sm flex gap-2 mt-3 mb-12'>
@@ -70,7 +68,7 @@ const ArchiveLayoutChild: FC<IArchiveLayoutChildProps> = ({
 			<h1>{name}</h1>
 
 			<div className='head-posts grid grid-cols-1 md:grid-cols-2 gap-10 mt-10'>
-				{currentPosts?.length && currentPosts?.slice(0, 2)?.map((item: any, index: any) => (
+				{currentPosts?.length > 0 && currentPosts?.slice(0, 2)?.map((item: any, index: any) => (
 					<div className='col-span-1' key={index}>
 						<Link href={item?.uri ?? "/"}>
 							<img className='w-full h-auto md:w-[550px] md:h-[366px] object-cover object-fit rounded' src={item?.featuredImage?.node?.sourceUrl} alt={item?.featuredImage?.node?.altText} />

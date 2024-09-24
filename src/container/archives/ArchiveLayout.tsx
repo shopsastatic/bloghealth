@@ -65,7 +65,7 @@ const ArchiveLayout: FC<IArchiveLayoutProps> = ({
 
 			<div className='my-10'>
 				{categoryChild?.length > 0 && categoryChild.map((cate: any, cateIndex: any) => (
-					<div key={cate?.id} className='mt-10'>
+					<div key={cateIndex} className='mt-10'>
 						{cateIndex != 0 && (
 							<hr className='mt-20' />
 						)}

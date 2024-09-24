@@ -88,17 +88,17 @@ const NavMobile: React.FC<NavMobileProps> = ({
 			<Disclosure
 				key={index}
 				as="li"
-				className="text-neutral-900 dark:text-white"
+				className="text-neutral-900 dark:text-white border-b border-slate-200 py-2"
 				defaultOpen={!index}
 			>
 				<Link
-					className="flex w-full items-center rounded-lg px-4 py-2.5 text-sm font-medium uppercase tracking-wide hover:bg-neutral-100 dark:hover:bg-neutral-800"
+					className="flex w-full items-center rounded-lg px-4 py-2.5 text-sm font-normal capitalize tracking-wide hover:bg-neutral-100 dark:hover:bg-neutral-800"
 					href={{
 						pathname: item.uri || '',
 					}}
 				>
 					<span
-						className={!item.children ? 'block w-full' : ''}
+						className={!item.children ? 'block w-full' : 'text-base'}
 						onClick={onClickClose}
 					>
 						{item.label}
@@ -161,37 +161,8 @@ const NavMobile: React.FC<NavMobileProps> = ({
 				</span>
 
 				<Logo />
-
-				<div className="mt-5 text-sm leading-6 text-neutral-600 dark:text-neutral-300">
-					{NC_SITE_SETTINGS.mobile_nav_sidebar?.description}
-				</div>
-
-				<div className="mt-6 flex flex-wrap gap-x-7 gap-y-2">
-					{NC_SITE_SETTINGS.site_socials?.map(item => (
-						<a
-							key={item?.name}
-							href={item?.url}
-							className="relative block"
-							target="_blank"
-							rel="noreferrer"
-						>
-							<span className="sr-only">{item?.name}</span>
-							<span className="absolute -inset-1 hidden rounded-full bg-neutral-400 dark:block"></span>
-
-							<MyImage
-								width={22}
-								height={22}
-								className="max-h-[22px] opacity-60 hover:opacity-100"
-								src={item?.icon || ''}
-								alt={item?.name || ''}
-							/>
-						</a>
-					))}
-				</div>
-
-				<div className="mt-7">{renderSearchForm()}</div>
 			</div>
-			<ul className="flex flex-col space-y-1 px-2 py-6 rtl:space-x-reverse">
+			<ul className="flex flex-col space-y-1 rtl:space-x-reverse">
 				{menuItems?.map((item, index) =>
 					_renderItem(item as NavItemType, index),
 				)}
