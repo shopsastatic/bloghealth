@@ -1,7 +1,7 @@
 import { GetStaticPropsContext } from "next";
 import { FaustPage, getNextStaticProps } from "@faustwp/core";
 import { gql } from "@/__generated__";
-import { GetAuthorWithPostsQuery, NcgeneralSettingsFieldsFragmentFragment } from "@/__generated__/graphql";
+import { NcgeneralSettingsFieldsFragmentFragment } from "@/__generated__/graphql";
 import { GET_POSTS_FIRST_COMMON } from "@/contains/contants";
 import React from "react";
 import { FOOTER_LOCATION, PRIMARY_LOCATION } from "@/contains/menu";
@@ -9,12 +9,12 @@ import Page404Content from "@/container/404Content";
 import PageLayout from "@/container/PageLayout";
 import Link from "next/link";
 
-const Page: FaustPage<GetAuthorWithPostsQuery> = (props: any) => {
+const Page: any = (props: any) => {
   if (!props.data?.user) {
     return <Page404Content />;
   }
 
-  const homeData = (props: any)?.data?.page?.pageCategory
+  const homeData = (props as any)?.data?.page?.pageCategory
 
   let author = props?.data?.user
 
@@ -75,7 +75,7 @@ export function getStaticProps(ctx: GetStaticPropsContext) {
   });
 }
 
-Page.variables = ({ params }) => {
+Page.variables = ({ params }: any) => {
   return {
     id: params?.slug,
     first: GET_POSTS_FIRST_COMMON,
