@@ -42,7 +42,7 @@ const Page: any = (props: any) => {
           <div className="my-10 py-10 border-t border-slate-300">
             <h2>Written by {author?.name}</h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-5 mt-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-8">
               {author?.posts?.nodes?.length > 0 && author?.posts?.nodes?.slice(0, 50)?.map((item: any, index: any) => (
                 <Link href={item?.uri ?? "/"} className="col-span-1 flex gap-3 items-center" key={index}>
                     <div>

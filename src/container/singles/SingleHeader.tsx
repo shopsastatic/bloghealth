@@ -179,7 +179,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
                     </div>
                     <div className="col-span-1">
                       <h5 className="font-semibold">{item?.name}</h5>
-                      <p className="my-2">From {item?.brand}</p>
+                      <p className="my-2 text-base">From {item?.brand}</p>
                       <div className="flex items-center gap-2 text-xs mt-3 mb-4">
                         <Rating rating={item?.rating?.starRating}></Rating>
                         <span><strong>{item?.rating?.starRating} / 5</strong> | {item?.rating?.totalReviews} Reviews</span>

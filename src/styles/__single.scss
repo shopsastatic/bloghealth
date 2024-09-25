@@ -95,8 +95,74 @@ a {
   font-size: 16px !important;
 }
 
+.wp-block-table {
+  max-width: 100%;
+  overflow-x: auto;
+  border-radius: 4px;
+  box-shadow: inset -5px 0 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+table {
+  font-size: 16px;
+}
+
+table th, table td {
+  font-size: 16px !important;
+  padding: 8px 16px !important;
+  border: 1px solid #d7dee4;
+}
+
+table td {
+  min-width: 150px;
+}
+
+table td:first-child {
+  position: sticky;
+  left: 0;
+  background-color: #edf5fc;
+  font-weight: bold;
+  min-width: 230px;
+  box-shadow: 5px 0 5px -3px rgba(0, 0, 0, 0.3);
+}
+
+table td:first-child  a {
+  text-decoration: none;
+}
+
+
+.wp-block-table::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.wp-block-table::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+.wp-block-table::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+  border-radius: 10px;
+}
+
+.wp-block-table::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.wp-block-table {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.5) #f1f1f1;
+}
+
+
 @media (min-width: 1299px) {
   .hide-desktop {
     display: none !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  table td:first-child {
+    min-width: 180px;
   }
 }
