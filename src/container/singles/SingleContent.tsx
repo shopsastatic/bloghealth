@@ -106,7 +106,7 @@ const SingleContent: any = ({ post }: any) => {
 						{relatedPost?.length && relatedPost?.map((item: any, index: any) => (
 							<Link href={item?.uri ?? "/"} key={index}>
 								<div className="col-span-1 flex items-center gap-4 post-item">
-									<img className="rounded w-full max-w-[100px] min-w-fit h-[66px] object-cover object-center" src={item?.featuredImage?.node?.sourceUrl} alt={item?.featuredImage?.node?.altText} />
+									<img className="rounded w-[100px] max-w-[100px] h-[66px] object-cover object-center" src={item?.featuredImage?.node?.sourceUrl} alt={item?.featuredImage?.node?.altText} />
 									<p className='text-sm font-medium'>{item?.title}</p>
 								</div>
 							</Link>
