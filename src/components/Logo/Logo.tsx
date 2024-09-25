@@ -22,11 +22,11 @@ const Logo: React.FC<LogoProps> = ({ className = '', imageClassName }) => {
 			href="/"
 		>
 			<MyImage
-				className={'block dark:hidden ' + imageClassName}
+				className={'block dark:hidden mt-0 lg:mt-6 ' + imageClassName}
 				src={logoSrc || ''}
 				alt={'Logo'}
-				width={150}
-				height={150}
+				width={200}
+				height={200}
 			/>
 		</Link>
 	)

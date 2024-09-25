@@ -99,15 +99,15 @@ const SingleContent: any = ({ post }: any) => {
 				{renderAlert()}
 
 				{/* AUTHOR */}
-				<div className="mx-auto mt-10 max-w-screen-md">
+				<div className="mx-auto mt-10">
 					<SingleAuthor author={author} />
 					<h2 className='mt-16 mb-7'>Related articles</h2>
-					<div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+					<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 						{relatedPost?.length && relatedPost?.map((item: any, index: any) => (
 							<Link href={item?.uri ?? "/"} key={index}>
 								<div className="col-span-1 flex items-center gap-4 post-item">
-									<img className="rounded w-[100px] max-w-[100px] h-[66px] object-cover object-center" src={item?.featuredImage?.node?.sourceUrl} alt={item?.featuredImage?.node?.altText} />
-									<p className='text-sm font-medium'>{item?.title}</p>
+									<img className="rounded w-[100px] min-w-[100px] h-[66px] object-cover object-center" src={item?.featuredImage?.node?.sourceUrl} alt={item?.featuredImage?.node?.altText} />
+									<p className='text-base font-medium'>{item?.title}</p>
 								</div>
 							</Link>
 						))}

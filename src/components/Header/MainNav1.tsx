@@ -23,15 +23,17 @@ const DynamicMenuBar = dynamic(() => import('@/components/MenuBar/MenuBar'), {
 const MainNav1: FC<MainNav1Props> = ({ menuItems, title, description }) => {
 	return (
 		<div className='main-header container flex items-center justify-between bg-white min-h-[60px]'>
-			<div className='logo'>
-				<Logo />
-			</div>
+			<div>
+				<div className='logo'>
+					<Logo />
+				</div>
 
-			<div className='menu'>
-				<Navigation
-					menuItems={menuItems}
-					className="hidden lg:flex"
-				/>
+				<div className='menu'>
+					<Navigation
+						menuItems={menuItems}
+						className="hidden lg:flex"
+					/>
+				</div>
 			</div>
 
 			<div className='flex items-center'>
