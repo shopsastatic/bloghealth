@@ -28,7 +28,6 @@ const SingleType1: FC<SingleType1Props> = ({ post }) => {
     ncPostMetaData,
   } = getPostDataFromPostFragment(post || {});
 
-
   let lasttestPost = (categories as any)?.nodes?.[0]?.posts?.nodes?.slice(-5)
   let layoutStyle = post?.postData?.layoutStyle?.[0] ?? "Default"
 
@@ -108,7 +107,7 @@ const SingleType1: FC<SingleType1Props> = ({ post }) => {
             >
               {author?.name}
             </Link>{' '}
-            &nbsp;&#8226;&nbsp; updated {formatDate(date, true)}{' '}
+            &nbsp;&#8226;&nbsp; Updated {formatDate(date, true)}{' '}
           </span>
         </div>
 
