@@ -116,6 +116,24 @@ const SingleHeader: FC<SingleHeaderProps> = ({
   };
 
 
+  useEffect(() => {
+    const h2Element = document.querySelector('h2.main-shortlist');
+
+    console.log(h2Element)
+    
+    if (h2Element) {
+      const ulElement = h2Element.nextElementSibling;
+
+      if (ulElement && ulElement.tagName.toLowerCase() === 'ul') {
+        const liElements = ulElement.querySelectorAll('li');
+
+        liElements.forEach((li, index) => {
+          li.textContent = `${index + 1}. ${li.textContent}`;
+        });
+      }
+    }
+  }, [updatedContent]);
+
   return (
     <>
       <div className="space-y-4 lg:space-y-5">
