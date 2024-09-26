@@ -83,26 +83,28 @@ const SingleType1: FC<SingleType1Props> = ({ post }) => {
     const shareElement = shareRef.current as any;
     const relatedArticleElement = relatedArticleRef.current;
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
+    const handleScroll = () => {
+      if (relatedArticleElement) {
+        const rect = relatedArticleElement.getBoundingClientRect();
+        const distanceFromTop = rect.top - 500;
+
+        console.log(distanceFromTop)
+
+        if (distanceFromTop <= 0) {
           shareElement?.classList.add('hidden');
         } else {
           shareElement?.classList.remove('hidden');
         }
-      });
-    });
-
-    if (relatedArticleElement) {
-      observer.observe(relatedArticleElement);
-    }
-
-    return () => {
-      if (relatedArticleElement) {
-        observer.unobserve(relatedArticleElement);
       }
     };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
+
 
   let categoryParent = categories?.nodes?.[0] as any
 	let categoryChild = categories?.nodes?.[1] as any
