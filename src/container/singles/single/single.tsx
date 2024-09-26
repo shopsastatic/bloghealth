@@ -80,28 +80,23 @@ const SingleType1: FC<SingleType1Props> = ({ post }) => {
   };
 
   useEffect(() => {
-    const shareElement = shareRef.current;
+    const shareElement = shareRef.current as any;
     const relatedArticleElement = relatedArticleRef.current;
 
-    // Tạo IntersectionObserver để theo dõi phần tử related-article
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // Khi related-article vào viewport, thêm class để làm mờ và biến mất
-          shareElement.classList.add('hidden');
+          shareElement?.classList.add('hidden');
         } else {
-          // Khi related-article ra khỏi viewport, khôi phục phần tử
-          shareElement.classList.remove('hidden');
+          shareElement?.classList.remove('hidden');
         }
       });
     });
 
-    // Bắt đầu quan sát phần tử related-article
     if (relatedArticleElement) {
       observer.observe(relatedArticleElement);
     }
 
-    // Cleanup observer khi component unmount
     return () => {
       if (relatedArticleElement) {
         observer.unobserve(relatedArticleElement);
