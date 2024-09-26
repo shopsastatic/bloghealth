@@ -81,7 +81,7 @@ const SingleType1: FC<SingleType1Props> = ({ post }) => {
 
   useEffect(() => {
     const shareElement = shareRef.current as any;
-    const relatedArticleElement = relatedArticleRef.current;
+    const relatedArticleElement = relatedArticleRef.current as any;
 
     const handleScroll = () => {
       if (relatedArticleElement) {
