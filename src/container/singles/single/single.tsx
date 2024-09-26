@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useRef } from "react";
 import NcImage from "@/components/NcImage/NcImage";
 import { getPostDataFromPostFragment } from "@/utils/getPostDataFromPostFragment";
 import SingleHeader from "../SingleHeader";
@@ -8,6 +8,7 @@ import SingleContent from "../SingleContent";
 import Link from "next/link";
 import { formatDate } from "@/components/FormatDate";
 import SingleTitle from "../SingleTitle";
+import SingleAuthor from "../SingleAuthor";
 
 export interface SingleType1Props {
   post: any
@@ -27,6 +28,10 @@ const SingleType1: FC<SingleType1Props> = ({ post }) => {
     uri,
     ncPostMetaData,
   } = getPostDataFromPostFragment(post || {});
+
+
+  const shareRef = useRef(null);
+  const relatedArticleRef = useRef(null);
 
   let lasttestPost = (categories as any)?.nodes?.[0]?.posts?.nodes?.slice(-5)
   let layoutStyle = post?.postData?.layoutStyle?.[0] ?? "Default"
@@ -74,6 +79,46 @@ const SingleType1: FC<SingleType1Props> = ({ post }) => {
     );
   };
 
+  useEffect(() => {
+    const shareElement = shareRef.current;
+    const relatedArticleElement = relatedArticleRef.current;
+
+    // Tạo IntersectionObserver để theo dõi phần tử related-article
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Khi related-article vào viewport, thêm class để làm mờ và biến mất
+          shareElement.classList.add('hidden');
+        } else {
+          // Khi related-article ra khỏi viewport, khôi phục phần tử
+          shareElement.classList.remove('hidden');
+        }
+      });
+    });
+
+    // Bắt đầu quan sát phần tử related-article
+    if (relatedArticleElement) {
+      observer.observe(relatedArticleElement);
+    }
+
+    // Cleanup observer khi component unmount
+    return () => {
+      if (relatedArticleElement) {
+        observer.unobserve(relatedArticleElement);
+      }
+    };
+  }, []);
+
+  let categoryParent = categories?.nodes?.[0] as any
+	let categoryChild = categories?.nodes?.[1] as any
+
+	let relatedPost = [];
+
+	if (categoryChild && categoryChild?.count >= 5) {
+		relatedPost = categoryChild?.posts.nodes.slice(0, 6);
+	} else {
+		relatedPost = categoryParent?.posts.nodes.slice(0, 6);
+	}
 
   //
   return (
@@ -92,7 +137,7 @@ const SingleType1: FC<SingleType1Props> = ({ post }) => {
               >
                 {item.name}
               </Link>
-              {index < (categories?.nodes?.length ?? 0) - 1 && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width={6} fill="#696969"><path d="M96 480c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L242.8 256L73.38 86.63c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l192 192c12.5 12.5 12.5 32.75 0 45.25l-192 192C112.4 476.9 104.2 480 96 480z"/></svg>}
+              {index < (categories?.nodes?.length ?? 0) - 1 && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width={6} fill="#696969"><path d="M96 480c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L242.8 256L73.38 86.63c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l192 192c12.5 12.5 12.5 32.75 0 45.25l-192 192C112.4 476.9 104.2 480 96 480z" /></svg>}
             </React.Fragment>
           ))}
         </div>
@@ -118,7 +163,7 @@ const SingleType1: FC<SingleType1Props> = ({ post }) => {
 
         <div className="relative overflow-visible grid grid-cols-1 lg:grid-cols-3 gap-0  lg:gap-10 mt-5">
           <div className="absolute -left-16 hidden min-[1300px]:block">
-            <div className="fixed top-44 h-fit flex flex-col items-center gap-5">
+            <div ref={shareRef} className="fixed top-44 h-fit flex flex-col items-center gap-5">
               <p className="text-xs">Share</p>
               <div onClick={shareToFacebook} className="cursor-pointer hover:bg-slate-100 block p-2 transition-all rounded">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" height="20" viewBox="0 0 20 20" width="20"><path d="m20 10c0-5.523-4.477-10-10-10s-10 4.477-10 10c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54v-2.891h2.54v-2.203c0-2.506 1.492-3.89 3.777-3.89 1.093 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.563v1.875h2.773l-.443 2.89h-2.33v6.988c4.78-.749 8.437-4.887 8.437-9.878" fill="#8a94a4" /></svg>
@@ -137,7 +182,21 @@ const SingleType1: FC<SingleType1Props> = ({ post }) => {
           <div className="col-span-2">
             <SingleHeader post={{ ...post }} />
             <div className="mt-5">
-              <SingleContent post={{ ...post }} />
+              {/* AUTHOR */}
+              <div className="mx-auto mt-10">
+                <SingleAuthor author={author} />
+                <h2 className='mt-16 mb-7 related-article'>Related articles</h2>
+                <div ref={relatedArticleRef} className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {relatedPost?.length && relatedPost?.map((item: any, index: any) => (
+                    <Link href={item?.uri ?? "/"} key={index}>
+                      <div className="col-span-1 flex items-center gap-4 post-item">
+                        <img className="rounded w-[100px] min-w-[100px] h-[66px] object-cover object-center" src={item?.featuredImage?.node?.sourceUrl} alt={item?.featuredImage?.node?.altText} />
+                        <p className='text-base font-medium'>{item?.title}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
 

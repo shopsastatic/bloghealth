@@ -26,16 +26,7 @@ const SingleContent: any = ({ post }: any) => {
 	} = getPostDataFromPostFragment(post || {})
 
 	//
-	let categoryParent = categories?.nodes?.[0] as any
-	let categoryChild = categories?.nodes?.[1] as any
 
-	let relatedPost = [];
-
-	if (categoryChild && categoryChild?.count >= 5) {
-		relatedPost = categoryChild?.posts.nodes.slice(0, 6);
-	} else {
-		relatedPost = categoryParent?.posts.nodes.slice(0, 6);
-	}
 
 	useEffect(() => {
 		const handleProgressIndicator = () => {
@@ -98,21 +89,7 @@ const SingleContent: any = ({ post }: any) => {
 				{/*    */}
 				{renderAlert()}
 
-				{/* AUTHOR */}
-				<div className="mx-auto mt-10">
-					<SingleAuthor author={author} />
-					<h2 className='mt-16 mb-7'>Related articles</h2>
-					<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-						{relatedPost?.length && relatedPost?.map((item: any, index: any) => (
-							<Link href={item?.uri ?? "/"} key={index}>
-								<div className="col-span-1 flex items-center gap-4 post-item">
-									<img className="rounded w-[100px] min-w-[100px] h-[66px] object-cover object-center" src={item?.featuredImage?.node?.sourceUrl} alt={item?.featuredImage?.node?.altText} />
-									<p className='text-base font-medium'>{item?.title}</p>
-								</div>
-							</Link>
-						))}
-					</div>
-				</div>
+				
 
 				<div className="!my-0" ref={endedAnchorRef}></div>
 			</div>
