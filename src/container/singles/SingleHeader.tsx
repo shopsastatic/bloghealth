@@ -46,10 +46,21 @@ const SingleHeader: FC<SingleHeaderProps> = ({
   const [headings, setHeadings] = useState<string[]>([]);
 
   const addIdsToH2Tags = (htmlContent: any) => {
-    return htmlContent.replace(/<h2(.*?)>(.*?)<\/h2>/g, (match: any, p1: any, p2: any) => {
+    let updatedContent = htmlContent.replace(/<h2(.*?)>(.*?)<\/h2>/g, (match: any, p1: any, p2: any) => {
       const id = p2.trim().toLowerCase().replace(/[\s]+/g, '-').replace(/[^\w\-]+/g, '');
       return `<h2${p1} id="${id}">${p2}</h2>`;
     });
+
+
+    updatedContent = updatedContent.replace(/<h2(.*?)class=["'](.*?\bmain-shortlist\b.*?)["'](.*?)>(.*?)<\/h2>\s*<ul(.*?)>(.*?)<\/ul>/gs, (match: any, p1: any, p2: any, p3: any, h2Content: any, ulAttributes: any, ulContent: any) => {
+      let liIndex = 1;
+      const updatedUlContent = ulContent.replace(/<li(.*?)>(.*?)<\/li>/g, (liMatch: any, liP1: any, liP2: any) => {
+        return `<li${liP1} class="line-clamp-1"><span>${liIndex++}.</span> ${liP2}</li>`;
+      });
+      return `<h2${p1}class="${p2}"${p3}>${h2Content}</h2><ul class="shortlist-box">${updatedUlContent}</ul>`;
+    });
+  
+    return updatedContent;
   };
 
   const updatedContent = addIdsToH2Tags(content);
@@ -114,25 +125,6 @@ const SingleHeader: FC<SingleHeaderProps> = ({
       'width=600,height=400'
     );
   };
-
-
-  useEffect(() => {
-    const h2Element = document.querySelector('h2.main-shortlist');
-
-    console.log(h2Element)
-    
-    if (h2Element) {
-      const ulElement = h2Element.nextElementSibling;
-
-      if (ulElement && ulElement.tagName.toLowerCase() === 'ul') {
-        const liElements = ulElement.querySelectorAll('li');
-
-        liElements.forEach((li, index) => {
-          li.textContent = `${index + 1}. ${li.textContent}`;
-        });
-      }
-    }
-  }, [updatedContent]);
 
   return (
     <>
@@ -211,7 +203,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
                       )}
 
                       {item?.actionButtons?.length && item?.actionButtons?.map((actionButton: any, index: any) => (
-                        <Link href={actionButton?.actionLink ?? "/"} className="mb-3 bg-black text-white w-full block p-2 text-center">
+                        <Link key={index} href={actionButton?.actionLink ?? "/"} className="mb-3 bg-black text-white w-full block p-2 text-center">
                           <button className="text-center text-sm font-bold ">{actionButton?.actionText}</button>
                         </Link>
                       ))}

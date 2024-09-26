@@ -166,3 +166,43 @@ table td:first-child  a {
     min-width: 180px;
   }
 }
+
+.shortlist-box {
+  padding-left: 0;
+  margin-top: 20px;
+}
+
+.shortlist-box li {
+  list-style-type: none;
+  border-radius: 8px;
+  border: 1px solid #decaca;
+  padding-left: 0;
+  overflow: hidden;
+  background-color: #f8f8f8;
+  font-size: 18px;
+}
+
+.shortlist-box li:nth-child(1), .shortlist-box li:nth-child(2), .shortlist-box li:nth-child(3) {
+  border-color:#0c56db;
+}
+
+.shortlist-box li span {
+  background-color: #d5e9f8;
+  width: 50px;
+  height: 48px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+}
+
+.shortlist-box li a {
+  padding-left: 15px;
+  color: #0d4cbe;
+  font-weight: 400;
+}
+
+.shortlist-box li:nth-child(1) span, .shortlist-box li:nth-child(2) span, .shortlist-box li:nth-child(3) span {
+  background-color: #1236a4;
+  color: #fff;
+}
