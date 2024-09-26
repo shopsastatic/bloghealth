@@ -55,7 +55,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
     updatedContent = updatedContent.replace(/<h2(.*?)class=["'](.*?\bmain-shortlist\b.*?)["'](.*?)>(.*?)<\/h2>\s*<ul(.*?)>(.*?)<\/ul>/gs, (match: any, p1: any, p2: any, p3: any, h2Content: any, ulAttributes: any, ulContent: any) => {
       let liIndex = 1;
       const updatedUlContent = ulContent.replace(/<li(.*?)>(.*?)<\/li>/g, (liMatch: any, liP1: any, liP2: any) => {
-        return `<li${liP1} class="line-clamp-1"><span>${liIndex++}.</span> ${liP2}</li>`;
+        return `<li${liP1}><div><span>${liIndex++}.</span></div> <div>${liP2}<div></li>`;
       });
       return `<h2${p1}class="${p2}"${p3}>${h2Content}</h2><ul class="shortlist-box">${updatedUlContent}</ul>`;
     });
