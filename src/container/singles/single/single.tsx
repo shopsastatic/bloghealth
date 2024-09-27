@@ -88,8 +88,6 @@ const SingleType1: FC<SingleType1Props> = ({ post }) => {
         const rect = relatedArticleElement.getBoundingClientRect();
         const distanceFromTop = rect.top - 500;
 
-        console.log(distanceFromTop)
-
         if (distanceFromTop <= 0) {
           shareElement?.classList.add('hidden');
         } else {
@@ -139,7 +137,7 @@ const SingleType1: FC<SingleType1Props> = ({ post }) => {
           ))}
         </div>
 
-        <div className="my-4">
+        <div className="my-4 mt-8">
           <h1>{title}</h1>
           <span className="text-sm !mt-0 py-3 block border-b border-slate-200">
             By{' '}
@@ -160,7 +158,7 @@ const SingleType1: FC<SingleType1Props> = ({ post }) => {
 
         <div className="relative overflow-visible grid grid-cols-1 lg:grid-cols-3 gap-0  lg:gap-10 mt-5">
           <div className="absolute -left-16 hidden min-[1300px]:block">
-            <div ref={shareRef} className="fixed top-44 h-fit flex flex-col items-center gap-5">
+            <div ref={shareRef} className="fixed top-44 mt-2 h-fit flex flex-col items-center gap-5">
               <p className="text-xs">Share</p>
               <div onClick={shareToFacebook} className="cursor-pointer hover:bg-slate-100 block p-2 transition-all rounded">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" height="20" viewBox="0 0 20 20" width="20"><path d="m20 10c0-5.523-4.477-10-10-10s-10 4.477-10 10c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54v-2.891h2.54v-2.203c0-2.506 1.492-3.89 3.777-3.89 1.093 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.563v1.875h2.773l-.443 2.89h-2.33v6.988c4.78-.749 8.437-4.887 8.437-9.878" fill="#8a94a4" /></svg>
