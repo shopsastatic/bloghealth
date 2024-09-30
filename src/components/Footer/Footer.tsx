@@ -46,7 +46,7 @@ export default function Footer({ menuItems }: Props) {
 								<Link href={"/author/michael-davis"}>Michael Davis</Link>
 							</li>
 							<li className='mb-4 hover:underline text-sm md:text-base'>
-								<Link href={"/our-experts"} className='text-link-color'>View all</Link>
+								<Link href={"/experts"} className='text-link-color'>View all</Link>
 							</li>
 						</ul>
 					</div>

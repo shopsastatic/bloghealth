@@ -137,7 +137,7 @@ const Page: FaustTemplate<GetPageQuery> = (props: any) => {
                   <div className="border-t border-b py-5">
                     <div className='flex justify-between items-center'>
                       <h5 className="font-medium">Our Research Team</h5>
-                      <Link href="/our-experts" className='text-link-color'>View all</Link>
+                      <Link href="/experts" className='text-link-color'>View all</Link>
                     </div>
 
                     <div className="grid grid-cols-2 md:grid-cols-3 my-5 justify-items-center gap-3">
@@ -162,7 +162,7 @@ const Page: FaustTemplate<GetPageQuery> = (props: any) => {
 
                   <div className='flex justify-between items-center my-3'>
                     <h5 className="font-medium">Board of Experts</h5>
-                    <Link href="/our-experts" className='text-link-color'>View all</Link>
+                    <Link href="/experts" className='text-link-color'>View all</Link>
                   </div>
 
                   <div className="grid grid-cols-2 md:grid-cols-3 my-5 justify-items-center gap-3">
